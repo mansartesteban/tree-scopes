@@ -32,8 +32,6 @@ export function activate(context: vscode.ExtensionContext) {
 			? vscode.workspace.workspaceFolders[0].uri.fsPath
 			: "";
 
-	console.log("trootpath", rootPath);
-
 	vscode.window.registerTreeDataProvider(
 		'tree-scopes',
 		new ScriptsProvider(path.join(rootPath, "package.json"))
