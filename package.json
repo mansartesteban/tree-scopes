@@ -14,7 +14,35 @@
   "contributes": {
     "commands": [
       {
-        "command": "tree-scopes.createScope",
+        "command": "tree-scopes.commands.start",
+        "title": "Lancer l'extension"
+      },
+      {
+        "command": "tree-scopes.commands.refreshTreeScopes",
+        "title": "Rafraîchir",
+        "icon": {
+          "light": "assets/icons/light/refresh.svg",
+          "dark": "assets/icons/dark/refresh.svg"
+        }
+      },
+      {
+        "command": "tree-scopes.commands.launchScript",
+        "title": "Lancer",
+        "icon": {
+          "light": "assets/icons/light/play.svg",
+          "dark": "assets/icons/dark/play.svg"
+        }
+      },
+      {
+        "command": "tree-scopes.commands.renameScript",
+        "title": "Renommer",
+        "icon": {
+          "light": "assets/icons/light/rename.svg",
+          "dark": "assets/icons/dark/rename.svg"
+        }
+      },
+      {
+        "command": "tree-scopes.commands.createScope",
         "title": "Créer un scope",
         "icon": {
           "light": "assets/icons/light/plus.svg",
@@ -22,7 +50,7 @@
         }
       },
       {
-        "command": "tree-scopes.seeScope",
+        "command": "tree-scopes.commands.seeScope",
         "title": "Voir un scope",
         "icon": {
           "light": "assets/icons/light/eye.svg",
@@ -33,33 +61,29 @@
     "views": {
       "explorer": [
         {
-          "id": "tree-scopes",
-          "name": "Tree scopes"
+          "name": "Tree Scopes WebView",
+          "type": "webview",
+          "id": "tree-scopes.views.main",
+          "icon": "refresh"
         }
       ]
     },
     "menus": {
       "view/title": [
         {
-          "command": "tree-scopes.createScope",
-          "when": "view == tree-scopes",
+          "command": "tree-scopes.commands.createScope",
+          "when": "view == tree-scopes.views.main",
           "group": "navigation"
         },
         {
-          "command": "tree-scopes.seeScope",
-          "when": "view == tree-scopes",
+          "command": "tree-scopes.commands.seeScope",
+          "when": "view == tree-scopes.views.main",
           "group": "navigation"
-        }
-      ],
-      "view/item/context": [
-        {
-          "command": "tree-scopes.editEntry",
-          "when": "view == tree-scopes && viewItem == script",
-          "group": "inline"
         },
         {
-          "command": "tree-scopes.deleteEntry",
-          "when": "view == tree-scopes && viewItem == script"
+          "command": "tree-scopes.commands.refreshTreeScopes",
+          "when": "view == tree-scopes.views.main",
+          "group": "navigation"
         }
       ]
     }
@@ -74,7 +98,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
-    "@types/node": "16.x",
+    "@types/node": "~16.18.50",
     "@types/vscode": "^1.82.0",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
